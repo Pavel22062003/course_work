@@ -117,7 +117,7 @@ def name():
 
 
 def string():
-    r = []
+    from_ = []
     data = searching(get_last5(correct_format(getting_operations())))
     p = []
     star = '*'
@@ -133,13 +133,29 @@ def string():
 
         if len(i) == 16:
 
-            r.append(f'{i[:4]} {i[4:6]}{star * 2} {star * 4} {i[-4:]}')
+            from_.append(f'{i[:4]} {i[4:6]}{star * 2} {star * 4} {i[-4:]}')
         elif len(i) == 20:
 
-            r.append(f'{i[:4]} {i[4:6]}{star * 2} {star * 4} {star * 4} {i[-4:]}')
-    return  r
+            from_.append(f'{i[:4]} {i[4:6]}{star * 2} {star * 4} {star * 4} {i[-4:]}')
+    return  from_
 
-name()
+def to():
+    """
+    Функция передаёт номер счёта на который был перевод
+    """
+    to_ = []
+
+    operations = searching(get_last5(correct_format(getting_operations())))
+    for i in operations:
+        k = i['to'].split(' ')
+        to_.append(f'{k[0]} **{k[1][-4:]}')
+    return to_[0]
+
+def summ():
+
+
+
+
 
 
 
