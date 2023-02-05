@@ -152,6 +152,14 @@ def to():
     return to_[0]
 
 def summ():
+    money = []
+    operations = searching(get_last5(correct_format(getting_operations())))
+    for i in operations:
+        amount = i['operationAmount']['amount']
+        name = i['operationAmount']['currency']['name']
+        money.append(f'{amount} {name}')
+    return money
+
 
 
 
