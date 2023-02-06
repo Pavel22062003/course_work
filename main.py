@@ -7,5 +7,5 @@ while count < 5:
 
 
    count += 1
-print(searching(get_last5(correct_format(getting_operations()))))
+
 
