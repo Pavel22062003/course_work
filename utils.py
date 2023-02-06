@@ -15,7 +15,7 @@ def getting_operations():
                 continue
             else:
                 list_operations.append(data[i])
-    return list_operations
+    return  list_operations
 
 
 def correct_format(text):
@@ -105,7 +105,7 @@ def form():
     return dates
 def name():
     """
-    Функция передаёт номер счёта с каторого сделан перевод
+    Функция передаёт имя счёта с каторого сделан перевод
     """
     description = []
     operations = searching(get_last5(correct_format(getting_operations())))
@@ -120,24 +120,35 @@ def string():
     from_ = []
     data = searching(get_last5(correct_format(getting_operations())))
     p = []
+    cards = []
     star = '*'
     for i in data:
         if 'from' in i:
             c = i['from'].split(' ')
             if len(c) == 3:
+                cards.append(f'{c[0]}{c[1]}')
                 p.append(c[2])
             else:
+                cards.append(f'{c[0]}')
                 p.append(c[1])
-
+        else:
+            from_.append('Данные отсутствуют')
+    count = 0
     for i in p:
 
         if len(i) == 16:
 
-            from_.append(f'{i[:4]} {i[4:6]}{star * 2} {star * 4} {i[-4:]}')
+
+            from_.append(f'{cards[count]} {i[:4]} {i[4:6]}{star * 2} {star * 4} {i[-4:]}')
+            count += 1
+
         elif len(i) == 20:
 
-            from_.append(f'{i[:4]} {i[4:6]}{star * 2} {star * 4} {star * 4} {i[-4:]}')
-    return  from_
+
+            from_.append(f'{cards[count]} {i[:4]} {i[4:6]}{star * 2} {star * 4} {star * 4} {i[-4:]}')
+            count += 1
+    return from_
+
 
 def to():
     """
@@ -149,7 +160,7 @@ def to():
     for i in operations:
         k = i['to'].split(' ')
         to_.append(f'{k[0]} **{k[1][-4:]}')
-    return to_[0]
+    return to_
 
 def summ():
     money = []
@@ -159,7 +170,6 @@ def summ():
         name = i['operationAmount']['currency']['name']
         money.append(f'{amount} {name}')
     return money
-
 
 
 
